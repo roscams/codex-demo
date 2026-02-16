@@ -1,0 +1,38 @@
+[
+  {
+    "id": "seed-1",
+    "title": "Brussels launches major mobility plan to reduce downtown traffic",
+    "section": "Nieuws",
+    "summary": "City leaders introduced a phased plan with extra bike lanes and revised bus routes.",
+    "imageUrl": "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1200&q=80",
+    "featured": true,
+    "publishedAt": "2025-01-10T08:00:00.000Z"
+  },
+  {
+    "id": "seed-2",
+    "title": "Club secures dramatic late victory in title race",
+    "section": "Sport",
+    "summary": "A stoppage-time goal keeps the championship battle open with two rounds left.",
+    "imageUrl": "https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?auto=format&fit=crop&w=1200&q=80",
+    "featured": false,
+    "publishedAt": "2025-01-10T09:30:00.000Z"
+  },
+  {
+    "id": "seed-3",
+    "title": "Popular TV host announces surprise prime-time return",
+    "section": "Showbizz",
+    "summary": "The presenter will host a new weekly format after a two-year break.",
+    "imageUrl": "https://images.unsplash.com/photo-1522869635100-9f4c5e86aa37?auto=format&fit=crop&w=1200&q=80",
+    "featured": false,
+    "publishedAt": "2025-01-10T10:00:00.000Z"
+  },
+  {
+    "id": "seed-4",
+    "title": "Belgian startup unveils AI tool for local retailers",
+    "section": "Tech",
+    "summary": "The platform helps shop owners predict demand and personalize promotions.",
+    "imageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80",
+    "featured": false,
+    "publishedAt": "2025-01-10T11:15:00.000Z"
+  }
+]
