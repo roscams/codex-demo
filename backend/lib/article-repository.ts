@@ -3,15 +3,16 @@ import path from 'path';
 import type { Article } from './types';
 import type { ArticleInput } from './validation';
 
-const filePath = path.join(process.cwd(), 'data', 'articles.json');
+const resolveFilePath = () =>
+  process.env.ARTICLES_FILE_PATH ?? path.join(process.cwd(), 'data', 'articles.json');
 
 const readAll = async (): Promise<Article[]> => {
-  const file = await fs.readFile(filePath, 'utf-8');
+  const file = await fs.readFile(resolveFilePath(), 'utf-8');
   return JSON.parse(file) as Article[];
 };
 
 const writeAll = async (articles: Article[]) => {
-  await fs.writeFile(filePath, JSON.stringify(articles, null, 2));
+  await fs.writeFile(resolveFilePath(), JSON.stringify(articles, null, 2));
 };
 
 export const listArticles = async () => readAll();

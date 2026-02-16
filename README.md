@@ -5,12 +5,25 @@ This repository contains a two-app workspace:
 - `frontend`: Public news website built with **React + Tailwind CSS**.
 - `backend`: **Next.js** backend that serves article APIs and a backoffice interface.
 
+## What was improved
+
+- Reworked the public UI to much more closely follow the provided HLN-like layout:
+  - utility top bar
+  - bold red primary navigation
+  - secondary category bar
+  - large promotional strip
+  - three-column main content area (lead story, side stories, "Net Binnen" updates)
+- Kept components small and maintainable (`Header`, `HeroBanner`, `HomepageContent`).
+- Added layout-specific frontend utilities with dedicated unit tests.
+- Expanded backend unit test coverage with CRUD tests for repository functionality.
+
 ## Features
 
 ### Public frontend
-- HLN-inspired visual layout (red header, featured story, section blocks).
+- HLN-inspired visual structure and color palette.
 - Fetches articles from backend API.
-- Groups stories by section (`Nieuws`, `Sport`, `Showbizz`, `Tech`).
+- Computes homepage layout buckets (`featured`, `secondaryStories`, `liveUpdates`).
+- Formats live update timestamps.
 
 ### Backoffice (Next.js)
 - Read current articles.
@@ -27,7 +40,8 @@ This repository contains a two-app workspace:
 │   │   ├── api/articles
 │   │   └── backoffice
 │   ├── data/articles.json
-│   └── lib
+│   ├── lib
+│   └── __tests__
 └── frontend
     └── src
 ```
@@ -61,13 +75,18 @@ Run all unit tests:
 npm test
 ```
 
-### Covered functionality
-- Frontend data grouping utility (`groupBySection`).
-- Backend article input validation (`articleSchema`).
+### Frontend tests
+- `groupBySection` behavior.
+- homepage layout composition (`buildHomepageLayout`).
+- time label formatting (`toTimeLabel`).
+
+### Backend tests
+- schema validation (`articleSchema`).
+- repository CRUD (`listArticles`, `createArticle`, `updateArticle`, `removeArticle`).
 
 ## Maintainability notes
 
 - Types are centralized in `frontend/src/types.ts` and `backend/lib/types.ts`.
 - Validation is centralized in `backend/lib/validation.ts`.
 - File-based repository logic is isolated in `backend/lib/article-repository.ts`.
-- Presentation components are kept small (`NewsCard`) and composed in `App.tsx`.
+- Frontend page composition is split into focused components.
