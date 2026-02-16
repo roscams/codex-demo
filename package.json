@@ -1,0 +1,14 @@
+{
+  "name": "hln-clone-workspace",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "dev:frontend": "npm --workspace frontend run dev",
+    "dev:backend": "npm --workspace backend run dev",
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces"
+  }
+}
