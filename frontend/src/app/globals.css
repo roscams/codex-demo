@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-white text-gray-900 antialiased;
+  }
+}
+
+@layer components {
+  .category-badge {
+    @apply inline-block px-2 py-1 text-xs font-bold uppercase tracking-wide text-white rounded;
+  }
+
+  .article-card {
+    @apply bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200;
+  }
+
+  .breaking-banner {
+    @apply bg-hln-red text-white font-bold;
+  }
+}
+
+@layer utilities {
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}

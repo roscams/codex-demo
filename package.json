@@ -1,0 +1,24 @@
+{
+  "name": "hln-news-website",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backoffice",
+    "shared"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:backoffice": "npm run dev --workspace=backoffice",
+    "dev": "concurrently \"npm run dev:frontend\" \"npm run dev:backoffice\"",
+    "build:frontend": "npm run build --workspace=frontend",
+    "build:backoffice": "npm run build --workspace=backoffice",
+    "build": "npm run build:frontend && npm run build:backoffice",
+    "db:generate": "npm run db:generate --workspace=shared",
+    "db:push": "npm run db:push --workspace=shared",
+    "db:seed": "npm run db:seed --workspace=shared"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

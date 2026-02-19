@@ -1,0 +1,108 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("JOURNALIST")
+  avatar    String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articles Article[]
+  comments Comment[]
+  media    Media[]
+}
+
+model Category {
+  id          String     @id @default(cuid())
+  name        String
+  slug        String     @unique
+  description String?
+  color       String     @default("#EF4444")
+  parentId    String?
+  parent      Category?  @relation("CategoryToCategory", fields: [parentId], references: [id])
+  children    Category[] @relation("CategoryToCategory")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  articles Article[]
+}
+
+model Tag {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  slug      String   @unique
+  createdAt DateTime @default(now())
+
+  articles ArticleTag[]
+}
+
+model Article {
+  id          String    @id @default(cuid())
+  title       String
+  slug        String    @unique
+  excerpt     String
+  content     String
+  image       String?
+  imageAlt    String?
+  status      String    @default("DRAFT")
+  featured    Boolean   @default(false)
+  breaking    Boolean   @default(false)
+  readingTime Int       @default(0)
+  views       Int       @default(0)
+  publishedAt DateTime?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  authorId   String
+  author     User       @relation(fields: [authorId], references: [id])
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
+
+  tags     ArticleTag[]
+  comments Comment[]
+}
+
+model ArticleTag {
+  articleId String
+  tagId     String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  tag       Tag     @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([articleId, tagId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  articleId String
+  article   Article @relation(fields: [articleId], references: [id], onDelete: Cascade)
+  userId    String
+  user      User    @relation(fields: [userId], references: [id])
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  filename  String
+  url       String
+  type      String
+  alt       String?
+  size      Int
+  createdAt DateTime @default(now())
+
+  uploadedById String
+  uploadedBy   User   @relation(fields: [uploadedById], references: [id])
+}
